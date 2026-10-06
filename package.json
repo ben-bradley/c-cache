@@ -1,6 +1,6 @@
 {
-  "name": "c-cache",
-  "version": "0.3.0",
+  "name": "@ben-bradley/c-cache",
+  "version": "0.3.1",
   "description": "Cluster-aware cache for Node.js workers with pluggable storage (default Map with max/ttl)",
   "type": "module",
   "main": "./dist/index.js",
