@@ -1,0 +1,1 @@
+This project is where we'll build a Node.js Library to enable a common caching mechanism for worker processes. Many caching libraries only work on a single process, but we're going to build one that works across processes and has customizable storage methods from a simple Set to an instance of LRU cache to a Redis connection.
