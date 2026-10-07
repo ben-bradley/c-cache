@@ -13,7 +13,7 @@ Most caching libraries only work inside a single process. With `node:cluster`, e
 ```ts
 import cluster from 'node:cluster';
 import { availableParallelism } from 'node:os';
-import { createCache } from 'c-cache';
+import { createCache } from '@ben-bradley/c-cache';
 
 // Create the cache in every process. On the primary this registers the
 // data store and IPC handlers; on workers it proxies over cluster IPC.
@@ -25,8 +25,8 @@ const cache = createCache<string, { name: string }>({
 if (cluster.isPrimary) {
   const n = availableParallelism();
   for (let i = 0; i < n; i++) cluster.fork();
-} else {
   await cache.set('user:42', { name: 'Ada' });
+} else {
   console.log(await cache.get('user:42')); // visible to every worker
 }
 ```
@@ -65,7 +65,7 @@ Do not combine these fields with a custom `storage` — that throws.
 Pass any object that implements `CacheStorage`:
 
 ```ts
-import { createCache, MapStorage } from 'c-cache';
+import { createCache, MapStorage } from '@ben-bradley/c-cache';
 
 const cache = createCache({
   storage: new MapStorage({ max: 500, ttl: 30_000 }),
@@ -75,8 +75,8 @@ const cache = createCache({
 ### Writing your own storage
 
 ```ts
-import type { CacheStorage } from 'c-cache';
-import { createCache } from 'c-cache';
+import type { CacheStorage } from '@ben-bradley/c-cache';
+import { createCache } from '@ben-bradley/c-cache';
 
 class MyStorage<K = string, V = unknown> implements CacheStorage<K, V> {
   #data = new Map<K, V>();
@@ -152,7 +152,7 @@ examples/
 
 ## Status
 
-**v0.3.0**
+**v0.3.2**
 
 - TypeScript-first, ESM
 - Always cluster-aware
