@@ -152,7 +152,7 @@ examples/
 
 ## Status
 
-**v0.3.1**
+**v0.3.2**
 
 - TypeScript-first, ESM
 - Always cluster-aware
